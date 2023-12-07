@@ -86,7 +86,7 @@
                   <b>10:30 AM to 12:30 PM</b> 
                </div>
                <div class="cell" data-title="Student Name">
-                  NAS ...................<br>
+                  NAS .........................<br>
                </div>
             </div>
             <div class="row">
@@ -176,7 +176,7 @@
                   <b>10:30 AM to 12:30 PM</b> 
                </div>
                <div class="cell" data-title="Student Name">
-                  NAS ...................<br>
+                  NAS .........................<br>
                </div>
             </div>
             <div class="row">
@@ -299,8 +299,10 @@
          </div>
       </div>
       <style>
+
+         @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
          body {
-         font-family: "Helvetica Neue", Helvetica, Arial;
+         font-family: 'Lato', sans-serif;
          font-size: 14px;
          line-height: 20px;
          font-weight: 400;
@@ -382,7 +384,7 @@
          min-width: 98px;
          font-size: 10px;
          line-height: 10px;
-         font-weight: bold;
+         font-weight: 700;
          text-transform: uppercase;
          color: #969696;
          display: block;
@@ -405,7 +407,7 @@
          .top-bar{
             font-size: 12px;
              line-height: 12px;
-             font-weight: normal;
+             font-weight: 400;
              text-transform: uppercase;
              color: #ffffff;
              max-width: 800px;
@@ -413,6 +415,7 @@
 
          }
          .top-bar .container { display:flex; justify-content:space-between; padding: 5px 15px;}
+         [data-title="Time"] { vertical-align:middle; }
       </style>
       <script>
          const displayTime = document.querySelector(".display-time");
