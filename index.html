@@ -626,7 +626,7 @@
             <li>Rajdeep Paul</li>
             <li>Dwipan Bachar</li>
             <li>Somnath Dutta</li>
-            <li>Priyanshu Kar</li>
+            <li></li>
             <li></li>
           </ul>
         </div>  
@@ -727,9 +727,9 @@
           <ul>
             <li>Dwipan Bachar</li>
             <li>Somnath Dutta</li>
-            <li>Priyanshu Kar</li>
             <li>Pabitra Ghosh</li>
             <li>Sumit Mondal</li>
+            <li></li>
           </ul>
         </div>  
         
@@ -786,7 +786,7 @@
           <time>06:00 - 08:00</time>
           <ul>
             <li>Samaresh Das</li>
-            <li></li>
+            <li>Priyanshu Kar</li>
             <li></li>
             <li></li>
             <li></li>
@@ -846,39 +846,44 @@
 </main>
 <em>* - will start from June'24</em>
 <section>
-  <ul class="wd-list">
-    <h2>Web Development</h2>
-    <li>Ratnadeep - (11)</li>
-    <li>Ujjal Mondal - (14)</li>
-    <li>Mafiur Islam - (13)</li>
-    <li>Suman Das - (12)</li>
-    <li>Mihir Bala - (08)</li>
-    <li>Alok Mondal - (10)</li>
-    <li>Samaresh Das - (12)</li>
-    <li>Bittu Sarkar - (05)</li>
-    <li>Samiran Roy - (05)</li>
-    <li>Simran Dutta - (05)</li>
-    <li>Disha Majumder - (03)</li>
-    <li>Pabitra Ghosh - (03)</li>
-    <li>Sumit Mondal - (03)</li>
-    <li>Shohag Dey - (01)</li>
-    <li>Mihir Gain - (24)</li>
-    <li>Krishanu Debnath - (24)</li>
-  </ul>
-  <ul class="basic-list">
-    <h2>Basic Computer</h2>
-    <li>Shibshankar Debnath - (04)</li>
-    <li>Rajdeep Paul - (04)</li>
-    <li>Dwipan Bachar - (03)</li>
-    <li>Somnath Dutta - (01)</li>
-    <li>Samrit Paul - (02)</li>
-    <li>Tanisha Dhali - (01)</li>
-    <li>Srijita Karmakar - (01)</li>
-    <li>Arup Das - (01)</li>
-    <li>Priyanshu Kar - (01)</li>
-
-  </ul>
+  <details>
+    <summary>Web Development</summary>
+     <ul class="wd-list">
+      <li>Ratnadeep - (11)</li>
+      <li>Ujjal Mondal - (14)</li>
+      <li>Mafiur Islam - (13)</li>
+      <li>Suman Das - (12)</li>
+      <li>Mihir Bala - (08)</li>
+      <li>Alok Mondal - (10)</li>
+      <li>Samaresh Das - (12)</li>
+      <li>Bittu Sarkar - (05)</li>
+      <li>Samiran Roy - (05)</li>
+      <li>Simran Dutta - (05)</li>
+      <li>Disha Majumder - (03)</li>
+      <li>Pabitra Ghosh - (03)</li>
+      <li>Sumit Mondal - (03)</li>
+      <li>Shohag Dey - (01)</li>
+      <li>Mihir Gain - (24)</li>
+      <li>Krishanu Debnath - (24)</li>
+    </ul>
+  </details>
+  <details>
+    <summary>Basic Computer</summary>
+    <ul class="basic-list">
+      <li>Shibshankar Debnath - (04)</li>
+      <li>Rajdeep Paul - (04)</li>
+      <li>Dwipan Bachar - (03)</li>
+      <li>Somnath Dutta - (01)</li>
+      <li>Samrit Paul - (02)</li>
+      <li>Tanisha Dhali - (01)</li>
+      <li>Srijita Karmakar - (01)</li>
+      <li>Arup Das - (01)</li>
+      <li>Priyanshu Kar - (01)</li>
+      <li>Sanjana Maity - (00)</li>
+    </ul>
+  </details>
 </section>
+
     <style>
       @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 *,
@@ -893,6 +898,10 @@ body{
   line-height: 1.3;
   font-weight: 400;
   background-color: #171717;
+  background-image: linear-gradient( 145deg, rgba(0,0,0,0.75), rgba(0,0,0,0.55)), url('https://images.pexels.com/photos/6515553/pexels-photo-6515553.jpeg');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
   color: #EDEDED;
   padding: 0;
   margin: 0;
@@ -919,7 +928,7 @@ ol li::before{
 ul li:empty::before,
 ol li:empty::before{
   content: '❌ ';
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 em{
@@ -937,14 +946,20 @@ main{
   position: relative;
   display: grid;
   grid-template-columns: repeat(var(--columns), 1fr);
+  gap: 15px;
   transition: 0.5s;
+  padding: 30px;
 }
 
 main > *{
   position: relative;
-  border: 1px double #444;
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  border: 1px solid #333;
+  border-radius: 10px;
   padding: 60px 20px 20px 20px;
   transition: 0.5s;
+  overflow: hidden;
 }
 
 main .title{
@@ -969,32 +984,15 @@ main > * .slot time{
   position: relative;
   display: inline-block;
   background-color: #4F3B78;
+  background-image: linear-gradient(145deg, #4951EA, #39A6E4);
   font-size: 12px;
   line-height: 1.3;
-  border-radius: 0;
+  border-radius: 6px;
   text-shadow: 0 1px 0 #00000080;
   padding: 4px 10px;
   margin-bottom: 12px;
   letter-spacing: 1px;
-  --r: 3px; /* control the radius */
-  mask: 
-    radial-gradient(var(--r),#0000 97%,#000) round 
-     calc(-1.5*var(--r)) calc(-1.5*var(--r))/calc(3*var(--r)) calc(3*var(--r)), 
-    linear-gradient(#000 0 0) no-repeat 50%/calc(100% - 3*var(--r)) calc(100% - 3*var(--r));
-
 }
-
-main:hover > *{
-  filter: grayscale(100%);
-  opacity: 0.5
-}
-
-main > *:hover{
-  border-color: seagreen;
-  filter: grayscale(0);
-  opacity: 1;
-}
- 
 
 main > *:hover > .title{
   letter-spacing: 7px;
@@ -1008,11 +1006,27 @@ section{
   padding: 40px;
 }
 
-section h2{
-  font-size: 20px;
-  border-bottom: 1px dashed #333;
-  padding: 0 0 15px 0;
+section details{
+  border: 1px solid #333;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0 , 0 , 0, 0.8);
+  padding: 20px;
+  margin: 0;
 }
+section summary{
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 2px;
+  padding: 0;
+  margin: 0;
+}
+
+section details ul{
+  margin-top: 20px;
+}
+
 
 @media only screen and (max-width: 1199px){
   main{
@@ -1028,7 +1042,5 @@ section h2{
     --columns: 1;
   }
 }
-      </style>
-    
-  </body>
+    </style>
 </html>
