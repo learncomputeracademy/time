@@ -12,7 +12,7 @@
     <title>LCA Class Timing</title>
 
     <style type="text/css">
-            @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 *,
 *::after,
 *::before{
@@ -200,7 +200,7 @@ section details ul li::before{
 }
 
 section details ul li[data-d="d"]{
-  color: #f1835c;
+  color: #ff99ac;
 }
 
 section details ul li > span:last-child{
@@ -208,20 +208,37 @@ section details ul li > span:last-child{
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: #ffffff24;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
   text-align: center;
   line-height: 25px;
   font-size: 11px;
   color: #ffffff;
 }
+
 section details ul li[data-d="d"] > span:last-child{
+  position: relative;
+  overflow: hidden;
   background-color: #e17b583b;
-  background-image: linear-gradient(145deg, #e17b5800, #e17b5855);
-  animation: ripple 1s ease infinite;
+  background-image: linear-gradient(145deg, #e17b5800, #ed143d8c);
+  
 }
 
+section details ul li[data-d="d"] > span:last-child::after{
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 0;
+  background-color: rgba(255,255,255,0.1);
+  width: 200%;
+  height: 5px;
+  rotate: -45deg;
+  animation: ripple 1s ease-in-out infinite;
+}
+
+
 @keyframes ripple{
-  0%{ box-shadow: 0 0 0 0 #e17b583b; }  
-  100%{ box-shadow: 0 0 0 4px #e17b5800; }
+  0%{ left: -50px; }  
+  100%{ left: 100px; }
 }
 
 
@@ -252,7 +269,7 @@ section details ul li[data-d="d"] > span:last-child{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
-    text-align: center;
+    text-align: left;
   }
 }
           
@@ -337,7 +354,7 @@ section details ul li[data-d="d"] > span:last-child{
         <ul>
           <li>Simran Dutta</li>
           <li>Somnath Dutta🖱️</li>
-          <li>Rajdeep Paul🖱️</li>
+          <li></li>
           <li></li>
           <li></li>
         </ul>
@@ -346,10 +363,10 @@ section details ul li[data-d="d"] > span:last-child{
         <time>06:00 ~ 08:00</time>
         <ul>
           <li>Bittu Sarkar</li>
-          <li>Samiran Roy</li>
           <li>Tanmoy Mondal</li>
           <li>Srijita Karmakar🖱️</li>
           <li>Diya Das🖱️</li>
+          <li></li>
         </ul>
       </div>
     </div>
@@ -438,9 +455,9 @@ section details ul li[data-d="d"] > span:last-child{
         <time>06:00 ~ 08:00</time>
         <ul>
           <li>Bittu Sarkar</li>
-          <li>Samiran Roy</li>
           <li>Tanmoy Mondal</li>
           <li>Samrit Paul🖱️</li>
+          <li></li>
           <li></li>
         </ul>
       </div>
@@ -475,7 +492,7 @@ section details ul li[data-d="d"] > span:last-child{
         <ul>
           <li>Mihir Bala</li>
           <li>Simran Dutta</li>
-          <li>Rajdeep Paul🖱️</li>
+          <li></li>
           <li></li>
           <li></li>
         </ul>
@@ -530,8 +547,8 @@ section details ul li[data-d="d"] > span:last-child{
         <time>06:00 ~ 08:00</time>
         <ul>
           <li>Bittu Sarkar</li>
-          <li>Samiran Roy</li>
           <li>Tanmoy Mondal</li>
+          <li></li>
           <li></li>
           <li></li>
         </ul>
@@ -543,15 +560,15 @@ section details ul li[data-d="d"] > span:last-child{
   <details>
     <summary>Web Development</summary>
     <ul class="wd-list">
-      <li data-d="d">
+      <li data-d="">
         <span>Ujjal Mondal</span>
         <span>23</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Mafiur Islam</span>
         <span>22</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Ratnadeep Dutta</span>
         <span>20</span>
       </li>
@@ -559,7 +576,7 @@ section details ul li[data-d="d"] > span:last-child{
         <span>Suman Das</span>
         <span>19</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Mihir Bala</span>
         <span>15</span>
       </li>
@@ -570,10 +587,6 @@ section details ul li[data-d="d"] > span:last-child{
       <li data-d="d">
         <span>Krishanu Debnath</span>
         <span>13</span>
-      </li> 
-      <li data-d="d">
-        <span>Samiran Roy</span>
-        <span>11</span 
       </li>
       <li data-d="d">
         <span>Bittu Sarkar</span>
@@ -607,7 +620,7 @@ section details ul li[data-d="d"] > span:last-child{
         <span>Sumit Mondal</span>
         <span>07</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Shohag Dey</span>
         <span>05</span>
       </li>
@@ -615,7 +628,7 @@ section details ul li[data-d="d"] > span:last-child{
         <span>Tanmoy Mondal</span>
         <span>04</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Jyotirmoy Sarkar</span>
         <span>02</span>
       </li>          
@@ -624,7 +637,7 @@ section details ul li[data-d="d"] > span:last-child{
   <details>
     <summary>Basic Computer</summary>
     <ul class="basic-list">
-      <li data-d="d">
+      <li data-d="">
         <span>Samrit Paul</span>
         <span>06</span>
       </li>
@@ -632,11 +645,11 @@ section details ul li[data-d="d"] > span:last-child{
         <span>Somnath Dutta</span>
         <span>05</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Tanisha Dhali</span>
         <span>05</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Srijita Karmakar</span>
         <span>05</span>
       </li>
@@ -648,11 +661,7 @@ section details ul li[data-d="d"] > span:last-child{
         <span>Sanjana Maity</span>
         <span>05</span>
       </li>
-      <li data-d="d">
-        <span>Rajdeep Paul</span>
-        <span>02</span>
-      </li> 
-      <li data-d="d">
+      <li data-d="">
         <span>Diya Das</span>
         <span>02</span>
       </li>
@@ -663,6 +672,7 @@ section details ul li[data-d="d"] > span:last-child{
     </ul>
   </details>
 </section>
+ 
  
 
  <script> 
