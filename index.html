@@ -14,9 +14,10 @@
     <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Gabarito:wght@400..900&family=Outfit:wght@100..900&family=Special+Elite&display=swap');
 :root{
-  --primary-color: #387478;
-  --secondary-color: #E2F1E7;
-  --accent-color: #C62E2E;
+  --primary-color: #EC255A;
+  --secondary-color: #FAEDF0;
+  --accent-color: #EC255A;
+  --text-color: #121212;
 }
 ::-webkit-scrollbar {
   width: 4px;
@@ -42,7 +43,7 @@
 body{
   font-family: "Outfit", sans-serif;
   font-size: 13px;
-  color: #555;
+  color: var(--text-color);
 }
 a{
   color: inherit;
@@ -66,11 +67,14 @@ ul li:empty::before{
 ul li::after{
   content: attr(data-stream);
 }
+
 header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
+  background-color: #121212;
+  background-image: url('https://www.animationsoftware7.com/img/agifs/snow02.gif');
+  background-size: 200px;
   color: #f4f4f6;
   padding: 10px;
 }
@@ -82,6 +86,13 @@ header > *:nth-child(2){
 }
 header > *:nth-child(3){
     text-align: right;
+}
+
+#time{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
 }
 main{
   --cols: 8% repeat(4, 1fr);
@@ -144,7 +155,6 @@ footer details .wd-list li > span:last-child::after{
     grid-template-columns: repeat(2, 1fr);
   }
 }
-          
         </style>
   </head>
   <body>
@@ -152,7 +162,7 @@ footer details .wd-list li > span:last-child::after{
   <header>
     <div id="today"></div>
     <div>
-      <a href="https://learncomputer.in/" target="_blank">Learn Computer Academy</a>
+      <a href="https://learncomputer.in/" target="_blank">🎅Learn Computer Academy🌲</a>
     </div>
     <div id="time"></div>
   </header>
@@ -171,7 +181,7 @@ footer details .wd-list li > span:last-child::after{
       <ul>
         <li>Alok Mondal</li>
         <li>Arina Khatun</li>
-        <li></li>
+        <li>Ratnadeep Dutta</li>
         <li></li>
         <li></li>
       </ul>
@@ -197,9 +207,9 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Samaresh Das</li>
-        <li>Ratnadeep Dutta</li>
         <li>Mafiur Islam</li>
         <li data-stream=" 🖰">Samrit Paul</li>
+        <li></li>
         <li></li>
       </ul>
     </div>
@@ -219,8 +229,8 @@ footer details .wd-list li > span:last-child::after{
     </div>
     <div class="td">
       <ul>
-        <li data-stream=" 🖰">Pritam Paul</li>
         <li>Tanmoy Mondal</li>
+        <li></li>
         <li></li>
         <li></li>
         <li></li>
@@ -229,7 +239,7 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Simran Dutta</li>
-        <li></li>
+        <li>Bittu Sarkar</li>
         <li></li>
         <li></li>
         <li></li>
@@ -238,9 +248,9 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Soumyadeep Mridha</li>
+        <li>Srijita Karmakar</li>
         <li data-stream=" 🖰">Diya Das</li>
-        <li></li>
-        <li></li>
+        <li data-stream=" 🖰">Pritam Paul</li>
         <li></li>
       </ul>
     </div>
@@ -253,7 +263,7 @@ footer details .wd-list li > span:last-child::after{
       <ul>
         <li>Alok Mondal</li>
         <li>Arina Khatun</li>
-        <li></li>
+        <li>Ratnadeep Dutta</li>
         <li></li>
         <li></li>
       </ul>
@@ -279,8 +289,8 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Samaresh Das</li>
-        <li>Ratnadeep Dutta</li>
         <li>Mafiur Islam</li>
+        <li></li>
         <li></li>
         <li></li>
       </ul>
@@ -301,8 +311,8 @@ footer details .wd-list li > span:last-child::after{
     </div>
     <div class="td">
       <ul>
-        <li data-stream=" 🖰">Pritam Paul</li>
         <li>Tanmoy Mondal</li>
+        <li></li>
         <li></li>
         <li></li>
         <li></li>
@@ -314,13 +324,14 @@ footer details .wd-list li > span:last-child::after{
         <li>Sumit Mondal</li>
         <li>Sohag Dey</li>
         <li>Simran Dutta</li>
-        <li></li>
+        <li>Bittu Sarkar</li>
       </ul>
     </div>
     <div class="td">
       <ul>
         <li>Soumyadeep Mridha</li>
         <li data-stream=" 🖰">Samrit Paul</li>
+        <li data-stream=" 🖰">Pritam Paul</li>
         <li></li>
         <li></li>
         <li></li>
@@ -335,8 +346,8 @@ footer details .wd-list li > span:last-child::after{
       <ul>
         <li>Alok Mondal</li>
         <li>Arina Khatun</li>
+        <li>Ratnadeep Dutta</li>
         <li data-stream=" 🖰">Arup Das</li>
-        <li></li>
         <li></li>
       </ul>
     </div>
@@ -361,9 +372,9 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Samaresh Das</li>
-        <li>Ratnadeep Dutta</li>
         <li>Mafiur Islam</li>
         <li data-stream=" 🖰">Diya Das</li>
+        <li></li>
         <li></li>
       </ul>
     </div>
@@ -384,8 +395,8 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Tanmoy Mondal</li>
-        <li></li>
-        <li></li>
+        <li>Soumyadeep Mridha</li>
+        <li>Srijita Karmakar</li>
         <li></li>
         <li></li>
       </ul>
@@ -395,7 +406,7 @@ footer details .wd-list li > span:last-child::after{
         <li>Pabitra Ghosh</li>
         <li>Sumit Mondal</li>
         <li>Sohag Dey</li>
-        <li>Soumyadeep Mridha</li>
+        <li>Bittu Sarkar</li>
         <li></li>
       </ul>
     </div>
@@ -414,19 +425,19 @@ footer details .wd-list li > span:last-child::after{
     <details>
       <summary>Web Development</summary>
       <ul class="wd-list">
-      <li data-d="d">
+      <li data-d="">
         <span>Mafiur Islam</span>
         <span>24</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Ratnadeep Dutta</span>
         <span>22</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Mihir Bala</span>
         <span>17</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Alok Mondal</span>
         <span>16</span>
       </li>    
@@ -445,29 +456,29 @@ footer details .wd-list li > span:last-child::after{
       <li data-d="d">
         <span>Samaresh Das</span>
         <span>11</span>
-      </li>  
+      </li> 
+      <li data-d="d">
+        <span>Disha Majumder</span>
+        <span>09</span>
+      </li>
     </ul>
     </details>
     <details>
     <summary>Web Development</summary>
     <ul class="wd-list">
-      <li data-d="d">
-        <span>Disha Majumder</span>
-        <span>09</span>
-      </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Pabitra Ghosh</span>
         <span>09</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Sumit Mondal</span>
         <span>09</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Sohag Dey</span>
         <span>07</span>
       </li>
-      <li data-d="d">
+      <li data-d="">
         <span>Tanmoy Mondal</span>
         <span>06</span>
       </li>
@@ -478,13 +489,21 @@ footer details .wd-list li > span:last-child::after{
       <li data-d="d">
         <span>Soumyadeep Mridha</span>
         <span>02</span>
+      </li>
+      <li data-d="d">
+        <span>Bittu Sarkar</span>
+        <span>01</span>
+      </li> 
+      <li data-d="d">
+        <span>Srijita Karmakar</span>
+        <span>01</span>
       </li>       
     </ul>
   </details>  
     <details>
     <summary>Basic Computer</summary>
     <ul class="wd-list">
-      <li data-d="d">
+      <li data-d="">
         <span>Samrit Paul</span>
         <span>08</span>
       </li>
@@ -540,14 +559,13 @@ function getCurrentTime() {
 
   const ampm = hours >= 12 ? 'PM' : 'AM';  // Determine AM/PM
   hours = hours % 12 || 12;  // Convert 24-hour format to 12-hour format
-
-  return `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;  // Format as HH:MM:SS AM/PM
+  return `<img src="https://i.ibb.co/r5136nN/time-2.png" alt="time-2" width="20" border="0">${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;  // Format as HH:MM:SS AM/PM
 }
 
 // Example Usage: Display Current Time
 let time = document.querySelector('#time');
 setInterval(()=>{
-  time.innerText = getCurrentTime()
+  time.innerHTML = getCurrentTime()
 },1000)
 
  </script>
