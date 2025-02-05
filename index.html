@@ -14,10 +14,10 @@
     <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Gabarito:wght@400..900&family=Outfit:wght@100..900&family=Special+Elite&display=swap');
 :root{
-  --primary-color: #EC255A;
-  --secondary-color: #FAEDF0;
-  --accent-color: #EC255A;
-  --text-color: #121212;
+  --primary-color: #000000;
+  --secondary-color: #efefef;
+  --accent-color: #EC4343;
+  --text-color: var(--primary-color);
 }
 ::-webkit-scrollbar {
   width: 4px;
@@ -42,8 +42,11 @@
 }
 body{
   font-family: "Outfit", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-color);
+/*   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🎄</text></svg>")
+      16 0, auto; */
+  overflow-x: hidden;
 }
 a{
   color: inherit;
@@ -55,12 +58,17 @@ ul{
   margin: 0;
 }
 
+ul li{
+  display: flex;
+  gap: 3px;
+}
+
 ul li:not(:last-child) {
   margin-bottom: 5px;
 }
 
 ul li:empty::before{
-  content: '✖';
+  content: '✘';
   color: var(--accent-color);
 }
 
@@ -69,12 +77,16 @@ ul li::after{
 }
 
 header{
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #121212;
-  background-image: url('https://www.animationsoftware7.com/img/agifs/snow02.gif');
-  background-size: 200px;
+  background-color: #000000;
+/*   background-image: url('https://i.pinimg.com/originals/a7/12/8f/a7128f2c657591d27a6c9eee365df80d.gif'); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 1px solid #333;
   color: #f4f4f6;
   padding: 10px;
 }
@@ -101,6 +113,7 @@ main{
 .fw-bold{
   font-weight: 700;
   color: var(--primary-color);
+  text-transform: uppercase;
 }
 
 .table-head{
@@ -147,6 +160,7 @@ footer details .wd-list li > span:last-child::after{
 }
 
 
+
 @media only screen and (max-width: 480px){
   body{
     font-size: 11px;
@@ -162,7 +176,7 @@ footer details .wd-list li > span:last-child::after{
   <header>
     <div id="today"></div>
     <div>
-      <a href="https://learncomputer.in/" target="_blank">🎅Learn Computer Academy🌲</a>
+      <a href="https://learncomputer.in/" target="_blank">Learn Computer Academy</a>
     </div>
     <div id="time"></div>
   </header>
@@ -179,7 +193,8 @@ footer details .wd-list li > span:last-child::after{
     <div class="td fw-bold">Mon</div>
     <div class="td">
       <ul>
-        <li>Alok Mondal</li>
+        <li>Alok Mondal <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.gif" alt="🌏" width="16" height="16">
+        </li>
         <li>Arina Khatun</li>
         <li>Ratnadeep Dutta</li>
         <li></li>
@@ -189,7 +204,7 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Priti Biswas</li>
-        <li data-stream=" 🖰">Arup Das</li>
+        <li></li>
         <li></li>
         <li></li>
         <li></li>
@@ -198,17 +213,17 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Mihir Bala</li>
+        <li>Suprabhat Sarkar</li>
         <li data-stream=" 🖰">Arnab Roy</li>
-        <li></li>
-        <li></li>
+        <li data-stream=" 🖰">Usha Sadhak</li>
         <li></li>
       </ul>
     </div>
     <div class="td">
       <ul>
         <li>Samaresh Das</li>
-        <li>Mafiur Islam</li>
         <li data-stream=" 🖰">Samrit Paul</li>
+        <li></li>
         <li></li>
         <li></li>
       </ul>
@@ -224,7 +239,7 @@ footer details .wd-list li > span:last-child::after{
         <li>Pabitra Ghosh</li>
         <li>Sumit Mondal</li>
         <li>Sohag Dey</li>
-        <li></li>
+        <li>Doyel Roy</li>
       </ul>
     </div>
     <div class="td">
@@ -238,8 +253,8 @@ footer details .wd-list li > span:last-child::after{
     </div>
     <div class="td">
       <ul>
-        <li>Simran Dutta</li>
-        <li>Bittu Sarkar</li>
+        <li></li>
+        <li></li>
         <li></li>
         <li></li>
         <li></li>
@@ -247,10 +262,10 @@ footer details .wd-list li > span:last-child::after{
     </div>
     <div class="td">
       <ul>
-        <li>Soumyadeep Mridha</li>
         <li>Srijita Karmakar</li>
         <li data-stream=" 🖰">Diya Das</li>
-        <li data-stream=" 🖰">Pritam Paul</li>
+        <li></li>
+        <li></li>
         <li></li>
       </ul>
     </div>
@@ -261,7 +276,7 @@ footer details .wd-list li > span:last-child::after{
     <div class="td fw-bold">Wed</div>
     <div class="td">
       <ul>
-        <li>Alok Mondal</li>
+        <li>Alok Mondal <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.gif" alt="🌏" width="16" height="16"></li>
         <li>Arina Khatun</li>
         <li>Ratnadeep Dutta</li>
         <li></li>
@@ -280,8 +295,8 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Mihir Bala</li>
+        <li>Suprabhat Sarkar</li>
         <li data-stream=" 🖰">Arnab Roy</li>
-        <li></li>
         <li></li>
         <li></li>
       </ul>
@@ -289,7 +304,7 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Samaresh Das</li>
-        <li>Mafiur Islam</li>
+        <li data-stream=" 🖰">Rick Das</li>
         <li></li>
         <li></li>
         <li></li>
@@ -303,7 +318,7 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Disha Majumder</li>
-        <li></li>
+        <li>Doyel Roy</li>
         <li></li>
         <li></li>
         <li></li>
@@ -323,16 +338,15 @@ footer details .wd-list li > span:last-child::after{
         <li>Pabitra Ghosh</li>
         <li>Sumit Mondal</li>
         <li>Sohag Dey</li>
-        <li>Simran Dutta</li>
-        <li>Bittu Sarkar</li>
+        <li></li>
+        <li></li>
       </ul>
     </div>
     <div class="td">
       <ul>
-        <li>Soumyadeep Mridha</li>
+        <li>Soumyadeep Mridha <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.gif" alt="🌏" width="16" height="16"></li>
         <li data-stream=" 🖰">Samrit Paul</li>
-        <li data-stream=" 🖰">Pritam Paul</li>
-        <li></li>
+        <li data-stream=" 🖰">Usha Sadhak</li>
         <li></li>
         <li></li>
       </ul>
@@ -344,10 +358,10 @@ footer details .wd-list li > span:last-child::after{
     <div class="td fw-bold">Fri</div>
     <div class="td">
       <ul>
-        <li>Alok Mondal</li>
+        <li>Alok Mondal <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.gif" alt="🌏" width="16" height="16"></li>
         <li>Arina Khatun</li>
         <li>Ratnadeep Dutta</li>
-        <li data-stream=" 🖰">Arup Das</li>
+        <li></li>
         <li></li>
       </ul>
     </div>
@@ -363,7 +377,7 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Mihir Bala</li>
-        <li>Simran Dutta</li>
+        <li>Suprabhat Sarkar</li>
         <li></li>
         <li></li>
         <li></li>
@@ -372,8 +386,8 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Samaresh Das</li>
-        <li>Mafiur Islam</li>
         <li data-stream=" 🖰">Diya Das</li>
+        <li></li>
         <li></li>
         <li></li>
       </ul>
@@ -386,7 +400,7 @@ footer details .wd-list li > span:last-child::after{
     <div class="td">
       <ul>
         <li>Disha Majumder</li>
-        <li>Krishanu Debnath</li>
+        <li>Doyel Roy</li>
         <li></li>
         <li></li>
         <li></li>
@@ -394,9 +408,9 @@ footer details .wd-list li > span:last-child::after{
     </div>
     <div class="td">
       <ul>
-        <li>Tanmoy Mondal</li>
-        <li>Soumyadeep Mridha</li>
         <li>Srijita Karmakar</li>
+        <li>Soumyadeep Mridha</li>
+        <li>Tanmoy Mondal</li>
         <li></li>
         <li></li>
       </ul>
@@ -406,13 +420,13 @@ footer details .wd-list li > span:last-child::after{
         <li>Pabitra Ghosh</li>
         <li>Sumit Mondal</li>
         <li>Sohag Dey</li>
-        <li>Bittu Sarkar</li>
+        <li></li>
         <li></li>
       </ul>
     </div>
     <div class="td">
       <ul>
-        <li></li>
+        <li data-stream=" 🖰">Rick Das</li>
         <li></li>
         <li></li>
         <li></li>
@@ -425,105 +439,105 @@ footer details .wd-list li > span:last-child::after{
     <details>
       <summary>Web Development</summary>
       <ul class="wd-list">
-      <li data-d="">
+      <li data-d="d">
         <span>Mafiur Islam</span>
-        <span>24</span>
+        <span>26</span>
       </li>
-      <li data-d="">
+      <li data-d="d">
         <span>Ratnadeep Dutta</span>
-        <span>22</span>
+        <span>25</span>
       </li>
-      <li data-d="">
+      <li data-d="d">
         <span>Mihir Bala</span>
-        <span>17</span>
+        <span>20</span>
       </li>
-      <li data-d="">
+      <li data-d="d">
         <span>Alok Mondal</span>
-        <span>16</span>
+        <span>19</span>
       </li>    
       <li data-d="d">
-        <span>Krishanu Debnath</span>
-        <span>14</span>
-      </li>
-      <li data-d="d">
         <span>Priti Biswas</span>
-        <span>12</span>
+        <span>15</span>
       </li> 
       <li data-d="d">
-        <span>Simran Dutta</span>
-        <span>10</span>
-      </li>
-      <li data-d="d">
         <span>Samaresh Das</span>
-        <span>11</span>
+        <span>14</span>
       </li> 
       <li data-d="d">
         <span>Disha Majumder</span>
-        <span>09</span>
+        <span>12</span>
+      </li>
+      <li data-d="d">
+        <span>Pabitra Ghosh</span>
+        <span>12</span>
+      </li>
+      <li data-d="d">
+        <span>Sumit Mondal</span>
+        <span>12</span>
       </li>
     </ul>
     </details>
     <details>
     <summary>Web Development</summary>
     <ul class="wd-list">
-      <li data-d="">
-        <span>Pabitra Ghosh</span>
-        <span>09</span>
-      </li>
-      <li data-d="">
-        <span>Sumit Mondal</span>
-        <span>09</span>
-      </li>
-      <li data-d="">
+      <li data-d="d">
         <span>Sohag Dey</span>
-        <span>07</span>
+        <span>10</span>
       </li>
-      <li data-d="">
+      <li data-d="d">
         <span>Tanmoy Mondal</span>
-        <span>06</span>
+        <span>09</span>
       </li>
       <li data-d="d">
         <span>Arina Khatun</span>
-        <span>03</span>
+        <span>06</span>
       </li> 
       <li data-d="d">
         <span>Soumyadeep Mridha</span>
-        <span>02</span>
+        <span>05</span>
       </li>
       <li data-d="d">
         <span>Bittu Sarkar</span>
-        <span>01</span>
+        <span>03</span>
       </li> 
       <li data-d="d">
         <span>Srijita Karmakar</span>
+        <span>03</span>
+      </li>  
+      <li data-d="d">
+        <span>Doyel Roy</span>
+        <span>02</span>
+      </li> 
+      <li data-d="">
+        <span>Suprabhat Sarkar</span>
         <span>01</span>
       </li>       
     </ul>
   </details>  
     <details>
-    <summary>Basic Computer</summary>
-    <ul class="wd-list">
-      <li data-d="">
-        <span>Samrit Paul</span>
-        <span>08</span>
-      </li>
-      <li data-d="d">
-        <span>Arup Das</span>
-        <span>07</span>
-      </li>
-      <li data-d="d">
-        <span>Diya Das</span>
-        <span>04</span>
-      </li>
-      <li data-d="d">
-        <span>Pritam Paul</span>
-        <span>04</span>
-      </li> 
-      <li data-d="d">
-        <span>Arnab Roy</span>
-        <span>03</span>
-      </li>       
-    </ul>
+      <summary>Basic Computer</summary>
+      <ul class="wd-list">
+        <li data-d="d">
+          <span>Samrit Paul</span>
+          <span>11</span>
+        </li>
+        <li data-d="d">
+          <span>Diya Das</span>
+          <span>07</span>
+        </li>
+        <li data-d="d">
+          <span>Arnab Roy</span>
+          <span>06</span>
+        </li>  
+        <li data-d="d">
+          <span>Usha Sadhak</span>
+          <span>02</span>
+        </li> 
+        <li data-d="d">
+          <span>Rick Das</span>
+          <span>02</span>
+        </li>         
+      </ul>
   </details>
   </footer>
 </main>
