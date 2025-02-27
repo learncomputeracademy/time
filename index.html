@@ -12,13 +12,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1e40af; /* Deep blue */
-      --secondary: #fbbf24; /* Warm amber */
-      --bg-dark: #0f172a; /* Slate dark */
-      --bg-light: #e2e8f0; /* Softer gray for better contrast */
-      --accent: #dc2626; /* Bright red */
-      --text: #f8fafc; /* Near-white */
-      --text-dark: #1e293b; /* Darker slate for readability */
+      --primary: #1e40af;
+      --secondary: #fbbf24;
+      --bg-dark: #0f172a;
+      --bg-light: #e2e8f0;
+      --accent: #dc2626;
+      --text: #f8fafc;
+      --text-dark: #1e293b;
     }
 
     body {
@@ -31,8 +31,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      overflow-y: auto;
     }
 
     header {
@@ -105,7 +104,6 @@
       color: var(--accent);
     }
 
-    /* Footer Styling */
     footer {
       display: flex;
       justify-content: space-between;
@@ -157,7 +155,6 @@
       color: var(--accent);
     }
 
-    /* Animations */
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -167,7 +164,6 @@
       animation: slideIn 0.5s ease-out;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 4px;
     }
@@ -186,13 +182,29 @@
     }
 
     @media (max-width: 640px) {
+      body {
+        padding: 4px;
+      }
       .timetable {
         grid-template-columns: 60px repeat(4, 1fr);
-        font-size: 9px;
+        font-size: 10px;
+        margin-bottom: 4px;
+      }
+      header {
+        padding: 6px 12px;
+        margin-bottom: 4px;
       }
       footer {
         flex-direction: column;
-        font-size: 8px;
+        gap: 4px;
+        font-size: 10px;
+        margin-top: 4px;
+      }
+      .toggle-section {
+        padding: 2px 6px;
+      }
+      .toggle-content {
+        padding: 2px 6px;
       }
     }
   </style>
@@ -201,7 +213,10 @@
   <header>
     <div id="today" class="text-xs"></div>
     <a href="https://learncomputer.in/" target="_blank" class="text-xs hover:text-secondary">Learn Computer Academy</a>
-    <div id="time" class="text-xs flex items-center gap-1"></div>
+    <div class="flex items-center gap-4">
+      <span id="empty-seats" class="text-xs"></span>
+      <div id="time" class="text-xs flex items-center gap-1"></div>
+    </div>
   </header>
 
   <section class="timetable">
@@ -508,22 +523,33 @@
     timeElement.innerHTML = getCurrentTime();
     setInterval(() => timeElement.innerHTML = getCurrentTime(), 1000);
 
+    // Empty Seats Calculation
+    function calculateEmptySeats() {
+      const timetableSlots = document.querySelectorAll('.slot ul li');
+      let emptyCount = 0;
+      timetableSlots.forEach(li => {
+        if (!li.textContent.trim() && li.innerHTML === '') {
+          emptyCount++; // Count empty <li> elements that get ✘
+        }
+      });
+      const availableSeats = Math.floor(emptyCount / 3); // Divide by 3 and round down
+      return availableSeats;
+    }
+
+    const emptySeatsElement = document.querySelector('#empty-seats');
+    emptySeatsElement.textContent = `Empty Seats: ${calculateEmptySeats()}+`;
+
     // Toggle Functionality
     const toggleSections = document.querySelectorAll('.toggle-section');
-
     toggleSections.forEach(section => {
       const summary = section.querySelector('summary');
       summary.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default <details> behavior
-
-        // Close all other sections
+        e.preventDefault();
         toggleSections.forEach(otherSection => {
           if (otherSection !== section) {
             otherSection.classList.remove('active');
           }
         });
-
-        // Toggle the clicked section
         section.classList.toggle('active');
       });
     });
