@@ -592,6 +592,78 @@
       });
     });
   </script>
+
+
+  <script>
+    // Add this to your existing JavaScript code
+function highlightTodaySchedule() {
+  const today = new Date();
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const currentDay = dayNames[today.getDay()];
+  
+  // Find the day row that matches today
+  const allDayElements = document.querySelectorAll('.day');
+  let todayElement = null;
+  
+  allDayElements.forEach(dayElement => {
+    if (dayElement.textContent.trim() === currentDay) {
+      // Highlight the day cell
+      dayElement.style.background = 'var(--primary)';
+      dayElement.style.color = 'white';
+      dayElement.style.fontWeight = 'bold';
+      todayElement = dayElement;
+    }
+  });
+  
+  // Highlight the entire row for today
+  if (todayElement) {
+    const rowIndex = Array.from(allDayElements).indexOf(todayElement);
+    const rowStartIndex = rowIndex * 5; // 5 cells per row (day + 4 time slots)
+    const slots = document.querySelectorAll('.slot');
+    
+    // Highlight the 4 time slots for today
+    for (let i = 0; i < 4; i++) {
+      const slotIndex = rowStartIndex + i;
+      if (slots[slotIndex]) {
+        slots[slotIndex].style.border = '2px solid var(--primary)';
+        slots[slotIndex].style.background = 'rgba(107, 72, 255, 0.1)';
+      }
+    }
+    
+    // Now highlight the current time slot more prominently
+    const currentHour = today.getHours();
+    const currentMinutes = today.getMinutes();
+    const currentTime = currentHour + (currentMinutes / 60);
+    
+    // Define time slots
+    const timeSlots = [
+      { start: 10.5, end: 12.5, index: 0 },  // 10:30-12:30
+      { start: 12.5, end: 14.5, index: 1 },  // 12:30-02:30
+      { start: 16.0, end: 18.0, index: 2 },  // 04:00-06:00
+      { start: 18.0, end: 20.0, index: 3 },  // 06:00-08:00
+    ];
+    
+    // Find the current time slot
+    for (const slot of timeSlots) {
+      if (currentTime >= slot.start && currentTime < slot.end) {
+        const currentSlotIndex = rowStartIndex + slot.index;
+        if (slots[currentSlotIndex]) {
+          slots[currentSlotIndex].style.border = '3px solid var(--accent)';
+          slots[currentSlotIndex].style.background = 'rgba(0, 255, 204, 0.2)';
+          slots[currentSlotIndex].style.boxShadow = '0 0 15px rgba(0, 255, 204, 0.3)';
+        }
+        break;
+      }
+    }
+  }
+}
+
+// Run when the page loads
+highlightTodaySchedule();
+
+// Update the highlight every minute
+setInterval(highlightTodaySchedule, 60000);
+  </script>
 </body>
 
   <script src="https://cdn.jsdelivr.net/gh/amartadey/robotBlocker@main/robotBlocker.js"></script>
