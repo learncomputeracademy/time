@@ -592,8 +592,7 @@
 
 
   <script>
-    // Add this to your existing JavaScript code
-function highlightTodaySchedule() {
+   function highlightTodaySchedule() {
   const today = new Date();
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const currentDay = dayNames[today.getDay()];
@@ -612,22 +611,41 @@ function highlightTodaySchedule() {
     }
   });
   
-  // Highlight the entire row for today
+  // If today's element is found, highlight the slots
   if (todayElement) {
-    const rowIndex = Array.from(allDayElements).indexOf(todayElement);
-    const rowStartIndex = rowIndex * 5; // 5 cells per row (day + 4 time slots)
-    const slots = document.querySelectorAll('.slot');
+    // Find today's index in the grid (how many days from the top)
+    const dayIndex = Array.from(allDayElements).indexOf(todayElement);
     
-    // Highlight the 4 time slots for today
+    // Get the slots for today's row
+    // Each row has 4 time slots that come after the day cell
+    const todaySlots = [];
+    const allSlots = document.querySelectorAll('.slot');
+    
+    // Calculate the indices for today's slots
+    // The grid has 5 columns (day + 4 time slots)
+    // For each row, we want the 4 time slots that follow the day cell
     for (let i = 0; i < 4; i++) {
-      const slotIndex = rowStartIndex + i;
-      if (slots[slotIndex]) {
-        slots[slotIndex].style.border = '2px solid var(--primary)';
-        slots[slotIndex].style.background = 'rgba(107, 72, 255, 0.1)';
-      }
+      // dayIndex * 4 gives us the first slot of the current day's row
+      // Then add i to get each subsequent slot
+      todaySlots.push(allSlots[dayIndex * 4 + i]);
     }
     
-    // Now highlight the current time slot more prominently
+    // Reset all slot styling first
+    allSlots.forEach(slot => {
+      slot.style.border = '1px solid rgba(255, 255, 255, 0.05)';
+      slot.style.background = 'rgba(255, 255, 255, 0.03)';
+      slot.style.boxShadow = 'none';
+    });
+    
+    // Highlight all of today's slots with primary color
+    todaySlots.forEach(slot => {
+      if (slot) {
+        slot.style.border = '2px solid var(--primary)';
+        slot.style.background = 'rgba(107, 72, 255, 0.1)';
+      }
+    });
+    
+    // Now highlight the current time slot more prominently with accent color
     const currentHour = today.getHours();
     const currentMinutes = today.getMinutes();
     const currentTime = currentHour + (currentMinutes / 60);
@@ -640,16 +658,31 @@ function highlightTodaySchedule() {
       { start: 18.0, end: 20.0, index: 3 },  // 06:00-08:00
     ];
     
-    // Find the current time slot
-    for (const slot of timeSlots) {
-      if (currentTime >= slot.start && currentTime < slot.end) {
-        const currentSlotIndex = rowStartIndex + slot.index;
-        if (slots[currentSlotIndex]) {
-          slots[currentSlotIndex].style.border = '3px solid var(--accent)';
-          slots[currentSlotIndex].style.background = 'rgba(0, 255, 204, 0.2)';
-          slots[currentSlotIndex].style.boxShadow = '0 0 15px rgba(0, 255, 204, 0.3)';
+    // Check if the current time falls within any of the time slots
+    let currentSlotFound = false;
+    for (const timeSlot of timeSlots) {
+      if (currentTime >= timeSlot.start && currentTime < timeSlot.end) {
+        if (todaySlots[timeSlot.index]) {
+          todaySlots[timeSlot.index].style.border = '3px solid var(--accent)';
+          todaySlots[timeSlot.index].style.background = 'rgba(0, 255, 204, 0.2)';
+          todaySlots[timeSlot.index].style.boxShadow = '0 0 15px rgba(0, 255, 204, 0.3)';
+          currentSlotFound = true;
         }
         break;
+      }
+    }
+    
+    // If current time doesn't match any slot, highlight the next upcoming slot
+    if (!currentSlotFound) {
+      for (const timeSlot of timeSlots) {
+        if (currentTime < timeSlot.start) {
+          if (todaySlots[timeSlot.index]) {
+            todaySlots[timeSlot.index].style.border = '3px solid var(--accent)';
+            todaySlots[timeSlot.index].style.background = 'rgba(0, 255, 204, 0.2)';
+            todaySlots[timeSlot.index].style.boxShadow = '0 0 15px rgba(0, 255, 204, 0.3)';
+          }
+          break;
+        }
       }
     }
   }
