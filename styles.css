@@ -232,3 +232,65 @@ header, .timetable, footer {
   background-repeat: no-repeat;
   background-size: 15px;      
 }
+
+
+
+
+
+
+/* Hide site initially */
+#site-content {
+  display: none;
+}
+
+/* Overlay */
+#site-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Glass Card */
+.overlay-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  width: 300px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Input */
+.overlay-card input {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* Button */
+.overlay-card button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #126539;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Error */
+#errorMsg {
+  margin-top: 10px;
+  color: #ff6b6b;
+  font-size: 14px;
+}

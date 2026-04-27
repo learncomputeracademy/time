@@ -15,11 +15,19 @@
 </head>
 
 <body>
-  <div id="wrapper">
-    <div class="inner">
-      <input type="password" class="password"/> 
+  <div id="site-overlay">
+    <div class="overlay-card">
+      <h2>Private Access</h2>
+      <p>Enter password to continue</p>
+
+      <input type="password" id="passwordInput" placeholder="Enter password" />
+      <button id="submitBtn">Unlock</button>
+
+      <p id="errorMsg"></p>
     </div>
   </div>
+
+  <div id="site-content">
   <header>
     <div id="today" class="text-sm font-medium"></div>
     <a href="https://learncomputer.in/" target="_blank" class="text-sm font-medium hover:text-accent transition-colors"
@@ -131,7 +139,7 @@
         <li></li>
         <li></li>
         <li></li>
-        <li></li>        
+        <li></li>
       </ul>
     </div>
     <div class="slot">
@@ -278,18 +286,18 @@
           <li data-d="d">Suprabhat Sarkar (15)</li>
           <li data-d="d">Arnob Biswas (10)</li>
           <li data-d="d">Soumik Dutta (10)</li>
-          <li data-d="d">Subhashish Raha (06)</li> 
+          <li data-d="d">Subhashish Raha (06)</li>
         </ul>
       </div>
     </div>
     <div class="toggle-section" data-toggle-id="web-dev-2">
       <summary>Web Dev (New)</summary>
       <div class="toggle-content">
-        <ul> 
-          <li data-d="d">Somen Biswas (04)</li> 
+        <ul>
+          <li data-d="d">Somen Biswas (04)</li>
           <li data-d="d">Anish Gharami (02)</li>
-          <li data-d="">Bibrato Sarkar (02)</li>   
-          <li data-d="">Apu Das (01)</li> 
+          <li data-d="">Bibrato Sarkar (02)</li>
+          <li data-d="">Apu Das (01)</li>
         </ul>
       </div>
     </div>
@@ -300,7 +308,7 @@
           <li data-d="d">Samrit Paul (24)</li>
           <li data-d="d">Diya Das (21)</li>
           <li data-d="d">Arnab Roy (20)</li>
-          <li data-d="d">Rupanjana Roy(12)</li>   
+          <li data-d="d">Rupanjana Roy(12)</li>
           <li data-d="d">Debagnik Dey(03)</li>
           <li data-d="d">Bihan Kundu (02)</li>
           <li data-d="">Pritha Seal (01)</li>
@@ -309,7 +317,7 @@
       </div>
     </div>
   </footer>
-
+</div>
   <script>
     function formatDateWithDay(date) {
       const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -471,17 +479,3 @@
 
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
