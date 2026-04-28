@@ -1,4 +1,5 @@
-:root {
+/*OLD*/
+/* :root {
   --primary: #6b48ff;
   --secondary: #ff6b6b;
   --bg-dark: #0a0a1a;
@@ -7,8 +8,22 @@
   --text: #ffffff;
   --text-dark: #d1d5db;
   --glass: rgba(255, 255, 255, 0.05);
-  --header-bg: #2a2552; /* New dark teal for header-row */
+  --header-bg: #2a2552; 
+} */
+
+/*Midnight Blue (Clean + Professional)*/
+:root {
+  --primary: #4f46e5;      /* Indigo */
+  --secondary: #22c55e;    /* Soft green accent */
+  --bg-dark: #0b1020;      /* Deep navy */
+  --bg-light: rgba(255, 255, 255, 0.06);
+  --accent: #38bdf8;       /* Sky blue */
+  --text: #e5e7eb;
+  --text-dark: #9ca3af;
+  --glass: rgba(255, 255, 255, 0.04);
+  --header-bg: #11162a;
 }
+
 
 body {
   font-family: 'Inter', sans-serif;
