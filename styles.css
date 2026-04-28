@@ -25,7 +25,7 @@
 } */
 
 /*2. Frosted Glass Dark (Minimal + Premium)*/
-:root {
+/* :root {
   --primary: #7c3aed;     
   --secondary: #06b6d4;   
   --bg-dark: #05070f;     
@@ -35,10 +35,10 @@
   --text-dark: #94a3b8;
   --glass: rgba(255, 255, 255, 0.03);
   --header-bg: #0b0f1f;
-}
+} */
 
 /*3. Cyberpunk Neon (Bold + Futuristic)*/
-/* :root {
+:root {
   --primary: #00f5d4;     
   --secondary: #ff006e;   
   --bg-dark: #030712;     
@@ -48,7 +48,7 @@
   --text-dark: #94a3b8;
   --glass: rgba(255, 255, 255, 0.02);
   --header-bg: #0a0f1f;
-} */
+}
 
 /*4. Dark Nature (Calm + Eye-friendly)*/
 /* :root {
