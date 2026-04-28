@@ -38,7 +38,7 @@
 } */
 
 /*3. Cyberpunk Neon (Bold + Futuristic)*/
-:root {
+/* :root {
   --primary: #00f5d4;     
   --secondary: #ff006e;   
   --bg-dark: #030712;     
@@ -48,10 +48,10 @@
   --text-dark: #94a3b8;
   --glass: rgba(255, 255, 255, 0.02);
   --header-bg: #0a0f1f;
-}
+} */
 
 /*4. Dark Nature (Calm + Eye-friendly)*/
-/* :root {
+:root {
   --primary: #10b981;     
   --secondary: #f59e0b;   
   --bg-dark: #06110f;     
@@ -61,7 +61,7 @@
   --text-dark: #9ca3af;
   --glass: rgba(255, 255, 255, 0.03);
   --header-bg: #0b1f1b;
-} */
+}
 
 /*5. True Black + Gold (Luxury UI)*/
 /* :root {
