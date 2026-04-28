@@ -12,7 +12,7 @@
 } */
 
 /*1. Midnight Blue (Clean + Professional)*/
-:root {
+/* :root {
   --primary: #4f46e5;     
   --secondary: #22c55e;    
   --bg-dark: #0b1020;      
@@ -22,10 +22,10 @@
   --text-dark: #9ca3af;
   --glass: rgba(255, 255, 255, 0.04);
   --header-bg: #11162a;
-}
+} */
 
 /*2. Frosted Glass Dark (Minimal + Premium)*/
-/* :root {
+:root {
   --primary: #7c3aed;     
   --secondary: #06b6d4;   
   --bg-dark: #05070f;     
@@ -35,7 +35,7 @@
   --text-dark: #94a3b8;
   --glass: rgba(255, 255, 255, 0.03);
   --header-bg: #0b0f1f;
-} */
+}
 
 /*3. Cyberpunk Neon (Bold + Futuristic)*/
 /* :root {
