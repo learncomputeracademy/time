@@ -51,7 +51,7 @@
 } */
 
 /*4. Dark Nature (Calm + Eye-friendly)*/
-:root {
+/* :root {
   --primary: #10b981;     
   --secondary: #f59e0b;   
   --bg-dark: #06110f;     
@@ -61,10 +61,10 @@
   --text-dark: #9ca3af;
   --glass: rgba(255, 255, 255, 0.03);
   --header-bg: #0b1f1b;
-}
+} */
 
 /*5. True Black + Gold (Luxury UI)*/
-/* :root {
+:root {
   --primary: #d4af37;     
   --secondary: #f59e0b;   
   --bg-dark: #000000;     
@@ -74,7 +74,7 @@
   --text-dark: #a1a1aa;
   --glass: rgba(255, 255, 255, 0.02);
   --header-bg: #0a0a0a;
-} */
+}
 
 body {
   font-family: 'Inter', sans-serif;
