@@ -134,6 +134,72 @@
   --header-bg: #171717;
 }
 
+/* ===== Theme 6: Deep Violet Night ===== */
+[data-theme="theme6"] {
+  --primary: #8b5cf6;
+  --secondary: #ec4899;
+  --bg-dark: #0c0a1f;
+  --bg-light: rgba(255, 255, 255, 0.05);
+  --accent: #c4b5fd;
+  --text: #f5f3ff;
+  --text-dark: #a1a1aa;
+  --glass: rgba(255, 255, 255, 0.03);
+  --header-bg: #141033;
+}
+
+/* ===== Theme 7: Arctic Ice ===== */
+[data-theme="theme7"] {
+  --primary: #22d3ee;
+  --secondary: #818cf8;
+  --bg-dark: #020617;
+  --bg-light: rgba(255, 255, 255, 0.04);
+  --accent: #67e8f9;
+  --text: #e0f2fe;
+  --text-dark: #94a3b8;
+  --glass: rgba(255, 255, 255, 0.02);
+  --header-bg: #0a1628;
+}
+
+/* ===== Theme 8: Slate Red ===== */
+[data-theme="theme8"] {
+  --primary: #ef4444;
+  --secondary: #f97316;
+  --bg-dark: #0f172a;
+  --bg-light: rgba(255, 255, 255, 0.05);
+  --accent: #fca5a5;
+  --text: #f8fafc;
+  --text-dark: #94a3b8;
+  --glass: rgba(255, 255, 255, 0.03);
+  --header-bg: #1e293b;
+}
+
+/* ===== Theme 9: Neon Indigo ===== */
+[data-theme="theme9"] {
+  --primary: #6366f1;
+  --secondary: #06b6d4;
+  --bg-dark: #020617;
+  --bg-light: rgba(255, 255, 255, 0.04);
+  --accent: #818cf8;
+  --text: #eef2ff;
+  --text-dark: #9ca3af;
+  --glass: rgba(255, 255, 255, 0.02);
+  --header-bg: #0a0f2c;
+}
+
+/* ===== Theme 10: Dark Amber ===== */
+[data-theme="theme10"] {
+  --primary: #f59e0b;
+  --secondary: #ef4444;
+  --bg-dark: #0b0904;
+  --bg-light: rgba(255, 255, 255, 0.04);
+  --accent: #fcd34d;
+  --text: #fffbeb;
+  --text-dark: #a3a3a3;
+  --glass: rgba(255, 255, 255, 0.02);
+  --header-bg: #1a1206;
+}
+
+
 /* ===== Base UI Styling ===== */
 body {
   background: var(--bg-dark);
