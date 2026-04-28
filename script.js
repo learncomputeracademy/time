@@ -156,3 +156,32 @@ function formatDateWithDay(date) {
   
   // Update the highlight every minute
   setInterval(highlightTodaySchedule, 60000);
+
+
+// Theme
+const toggleBtn = document.getElementById("themeToggle");
+const panel = document.getElementById("themePanel");
+const buttons = document.querySelectorAll("[data-theme]");
+
+// Toggle panel
+toggleBtn.addEventListener("click", () => {
+  panel.classList.toggle("active");
+});
+
+// Apply theme
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const theme = btn.getAttribute("data-theme");
+
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("selectedTheme", theme);
+  });
+});
+
+// Load saved theme
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("selectedTheme");
+  if (savedTheme) {
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }
+});

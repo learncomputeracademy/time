@@ -11,10 +11,24 @@
   <title>LCA Class Timetable</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?version=2.6">
+  <link rel="stylesheet" href="./styles.css?version=2.7.0">
 </head>
 
 <body>
+  <!-- Theme Toggle Button -->
+  <div class="theme-switcher">
+    <button id="themeToggle">⚙️</button>
+
+    <div class="theme-panel" id="themePanel">
+      <h4>Choose Theme</h4>
+      <button data-theme="theme1">Midnight Pro</button>
+      <button data-theme="theme2">Glass Purple</button>
+      <button data-theme="theme3">Ocean Blue</button>
+      <button data-theme="theme4">Cyber Lime</button>
+      <button data-theme="theme5">Graphite Orange</button>
+    </div>
+  </div>
+
   <header>
     <div id="today" class="text-sm font-medium"></div>
     <a href="https://learncomputer.in/" target="_blank" class="text-sm font-medium hover:text-accent transition-colors"
