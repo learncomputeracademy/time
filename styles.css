@@ -199,7 +199,9 @@
   --header-bg: #1a1206;
 }
 
-
+html{
+ scrollbar-width: thin;
+}
 /* ===== Base UI Styling ===== */
 body {
   background: var(--bg-dark);
