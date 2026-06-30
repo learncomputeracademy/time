@@ -539,7 +539,7 @@ header {
   justify-content: space-between;
   transition: background .15s ease;
 }
-.slot li:not(:empty):hover { background: color-mix(in srgb, var(--primary) 14%, var(--surface-2)); }
+.slot li:not(:empty):hover { background-color: color-mix(in srgb, var(--primary) 14%, var(--surface-2)); }
 
 .slot li:empty {
   background: transparent;
