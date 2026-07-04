@@ -37,6 +37,42 @@ togglePw.addEventListener('click', () => {
   togglePw.innerHTML = isPw ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
 });
 
+/* ---------- Secret unlock: triple click/tap the logo ---------- */
+const loginLogo = document.querySelector('.login-mark img');
+let logoTapCount = 0;
+let logoTapTimer = null;
+let logoLastEventTime = 0;
+
+function handleLogoTap() {
+  // Debounce so a single physical tap isn't double-counted
+  // (mobile browsers can fire both touchend and click for one tap).
+  const now = Date.now();
+  if (now - logoLastEventTime < 350) return;
+  logoLastEventTime = now;
+
+  logoTapCount++;
+  clearTimeout(logoTapTimer);
+  logoTapTimer = setTimeout(() => { logoTapCount = 0; }, 900);
+
+  if (logoTapCount >= 3) {
+    logoTapCount = 0;
+    clearTimeout(logoTapTimer);
+    if (rememberMe.checked) {
+      localStorage.setItem(AUTH_KEY, 'true');
+    }
+    loginError.classList.remove('show');
+    unlockApp();
+  }
+}
+
+if (loginLogo) {
+  loginLogo.addEventListener('click', handleLogoTap);
+  loginLogo.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    handleLogoTap();
+  }, { passive: false });
+}
+
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
   if (passwordInput.value === ACCESS_CODE) {
@@ -223,16 +259,16 @@ function setupThemeSwitcher() {
 }
 
 /* --------- Context Menu and Right Click Disable ------------ */
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if (
-    e.key === 'F12' ||
-    (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
-    (e.ctrlKey && e.key.toUpperCase() === 'U')
-  ) {
-    e.preventDefault();
-  }
-});
+// document.addEventListener('contextmenu', e => e.preventDefault());
+// document.addEventListener('keydown', e => {
+//   if (
+//     e.key === 'F12' ||
+//     (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+//     (e.ctrlKey && e.key.toUpperCase() === 'U')
+//   ) {
+//     e.preventDefault();
+//   }
+// });
 
 /* ---------- Logout / lock screen ---------- */
 function setupLogout() {
