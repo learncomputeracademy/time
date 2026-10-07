@@ -26,6 +26,7 @@ function lockApp() {
   localStorage.removeItem(AUTH_KEY);
   app.classList.add('app-hidden');
   loginScreen.style.display = 'flex';
+  setFlipped(false);
   passwordInput.value = '';
   rememberMe.checked = false;
   passwordInput.focus();
@@ -37,50 +38,157 @@ togglePw.addEventListener('click', () => {
   togglePw.innerHTML = isPw ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
 });
 
-/* ---------- Secret unlock: triple click/tap the logo ---------- */
-const loginLogo = document.querySelector('.login-mark img');
-let logoTapCount = 0;
-let logoTapTimer = null;
-let logoLastEventTime = 0;
+function grantAccess() {
+  if (rememberMe.checked) {
+    localStorage.setItem(AUTH_KEY, 'true');
+  }
+  loginError.classList.remove('show');
+  unlockApp();
+}
 
-function handleLogoTap() {
-  // Debounce so a single physical tap isn't double-counted
-  // (mobile browsers can fire both touchend and click for one tap).
-  const now = Date.now();
-  if (now - logoLastEventTime < 350) return;
-  logoLastEventTime = now;
-
-  logoTapCount++;
-  clearTimeout(logoTapTimer);
-  logoTapTimer = setTimeout(() => { logoTapCount = 0; }, 900);
-
-  if (logoTapCount >= 3) {
-    logoTapCount = 0;
-    clearTimeout(logoTapTimer);
-    if (rememberMe.checked) {
-      localStorage.setItem(AUTH_KEY, 'true');
+// Calls handler after `taps` clicks/taps, each within `windowMs` of the last.
+function onMultiTap(el, taps, handler, windowMs = 900) {
+  let count = 0;
+  let timer = null;
+  el.addEventListener('click', () => {
+    count++;
+    clearTimeout(timer);
+    timer = setTimeout(() => { count = 0; }, windowMs);
+    if (count >= taps) {
+      count = 0;
+      clearTimeout(timer);
+      handler();
     }
-    loginError.classList.remove('show');
-    unlockApp();
+  });
+}
+
+/* ---------- Secret unlock #1: triple click/tap the logo ----------
+   Listen on the wrapper, not the <img>: robotBlocker.js sets
+   `img { pointer-events: none; }`, so the image never gets clicks. */
+onMultiTap(document.querySelector('.login-mark'), 3, grantAccess);
+
+/* ---------- Secret unlock #2: double click/tap the title → pattern lock ----------
+   Dots are numbered 1–9, left→right, top→bottom:
+     1 2 3
+     4 5 6
+     7 8 9
+   '1235789' is a "Z". */
+const UNLOCK_PATTERN = '1235789';
+
+const loginFlip = document.getElementById('loginFlip');
+const loginFront = loginFlip.querySelector('.login-front');
+const loginBack = loginFlip.querySelector('.login-back');
+const patternPad = document.getElementById('patternPad');
+const patternPath = document.getElementById('patternPath');
+const patternMsg = document.getElementById('patternMsg');
+const patternDots = [...patternPad.querySelectorAll('.pattern-dot')];
+
+let pattern = [];       // indexes (0–8) of dots joined so far
+let dotCenters = [];    // dot centres relative to the pad, measured on each draw
+let drawing = false;
+let patternResetTimer = null;
+
+function setFlipped(flipped) {
+  loginFlip.classList.toggle('flipped', flipped);
+  // Keep keyboard focus off the hidden face.
+  loginFront.inert = flipped;
+  loginBack.inert = !flipped;
+  resetPattern();
+}
+
+function resetPattern() {
+  clearTimeout(patternResetTimer);
+  pattern = [];
+  drawing = false;
+  patternDots.forEach(d => d.classList.remove('active'));
+  patternPad.classList.remove('is-error', 'is-ok');
+  patternPath.setAttribute('points', '');
+  patternMsg.textContent = '';
+}
+
+function padPoint(e) {
+  const r = patternPad.getBoundingClientRect();
+  return { x: e.clientX - r.left, y: e.clientY - r.top };
+}
+
+function hitDot({ x, y }) {
+  const radius = patternPad.offsetWidth / 7;
+  return dotCenters.findIndex(c => Math.hypot(c.x - x, c.y - y) <= radius);
+}
+
+function addDot(i) {
+  if (i < 0 || pattern.includes(i)) return;
+  // Like a phone lock: going 1→3 also picks up 2 if it hasn't been used.
+  const last = pattern[pattern.length - 1];
+  if (last !== undefined) {
+    const r1 = Math.floor(last / 3), c1 = last % 3;
+    const r2 = Math.floor(i / 3), c2 = i % 3;
+    if ((r1 + r2) % 2 === 0 && (c1 + c2) % 2 === 0) {
+      const mid = ((r1 + r2) / 2) * 3 + (c1 + c2) / 2;
+      if (!pattern.includes(mid)) {
+        pattern.push(mid);
+        patternDots[mid].classList.add('active');
+      }
+    }
+  }
+  pattern.push(i);
+  patternDots[i].classList.add('active');
+}
+
+function drawPattern(tail) {
+  const pts = pattern.map(i => dotCenters[i]);
+  if (tail) pts.push(tail);
+  patternPath.setAttribute('points', pts.map(p => `${p.x},${p.y}`).join(' '));
+}
+
+patternPad.addEventListener('pointerdown', (e) => {
+  resetPattern();
+  const r = patternPad.getBoundingClientRect();
+  dotCenters = patternDots.map(d => {
+    const b = d.getBoundingClientRect();
+    return { x: b.left + b.width / 2 - r.left, y: b.top + b.height / 2 - r.top };
+  });
+  drawing = true;
+  patternPad.setPointerCapture(e.pointerId);
+  const p = padPoint(e);
+  addDot(hitDot(p));
+  drawPattern(p);
+});
+
+patternPad.addEventListener('pointermove', (e) => {
+  if (!drawing) return;
+  const p = padPoint(e);
+  addDot(hitDot(p));
+  drawPattern(p);
+});
+
+function finishPattern() {
+  if (!drawing) return;
+  drawing = false;
+  drawPattern();
+  if (pattern.length === 0) return;
+
+  const entered = pattern.map(i => i + 1).join('');
+  if (entered === UNLOCK_PATTERN) {
+    patternPad.classList.add('is-ok');
+    setTimeout(grantAccess, 300);
+  } else {
+    patternPad.classList.add('is-error');
+    patternMsg.textContent = 'Wrong pattern. Try again.';
+    patternResetTimer = setTimeout(resetPattern, 900);
   }
 }
 
-if (loginLogo) {
-  loginLogo.addEventListener('click', handleLogoTap);
-  loginLogo.addEventListener('touchend', (e) => {
-    e.preventDefault();
-    handleLogoTap();
-  }, { passive: false });
-}
+patternPad.addEventListener('pointerup', finishPattern);
+patternPad.addEventListener('pointercancel', finishPattern);
+
+onMultiTap(document.querySelector('.login-front .login-title'), 2, () => setFlipped(true), 600);
+document.getElementById('flipBack').addEventListener('click', () => setFlipped(false));
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
   if (passwordInput.value === ACCESS_CODE) {
-    if (rememberMe.checked) {
-      localStorage.setItem(AUTH_KEY, 'true');
-    }
-    loginError.classList.remove('show');
-    unlockApp();
+    grantAccess();
   } else {
     loginError.classList.add('show');
     passwordInput.classList.remove('shake');

@@ -131,10 +131,6 @@ button { font-family: inherit; }
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .45; transform: scale(.78); }
-}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
@@ -180,8 +176,112 @@ button { font-family: inherit; }
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.08) inset,
     0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Flip: front = access code, back = pattern lock ----------
+   Both faces sit in the same grid cell, so the card is as tall as the
+   taller face. */
+.login-flip {
+  width: 100%;
+  max-width: 380px;
+  perspective: 1400px;
   animation: fadeIn .5s ease-out;
 }
+.login-flipper {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.4, .2, .2, 1);
+}
+.login-flip.flipped .login-flipper { transform: rotateY(180deg); }
+.login-flipper > .login-card {
+  grid-area: 1 / 1;
+  max-width: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.login-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-back .login-sub { margin-bottom: 18px; }
+
+.pattern-pad {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  touch-action: none; /* stop the page scrolling while drawing */
+  cursor: pointer;
+}
+.pattern-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.pattern-lines polyline {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .75;
+}
+.pattern-dot {
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 2px solid color-mix(in srgb, var(--text-dim) 60%, transparent);
+  transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.pattern-dot.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.25);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--primary) 22%, transparent);
+}
+.pattern-pad.is-error .pattern-lines polyline { stroke: var(--secondary); }
+.pattern-pad.is-error .pattern-dot.active {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--secondary) 22%, transparent);
+}
+.pattern-pad.is-error { animation: shakeField .35s; }
+.pattern-pad.is-ok .pattern-lines polyline { opacity: 1; }
+
+.pattern-msg {
+  min-height: 18px;
+  margin: 14px 0 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.flip-back {
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.flip-back:hover { color: var(--text); background: var(--surface-2); }
 
 .login-mark {
   width: 56px;
@@ -536,21 +636,44 @@ header {
 .slot.is-live {
   background: color-mix(in srgb, var(--primary) 10%, var(--surface));
 }
+/* Live slot: rotating gradient ring drawn inside the card's edge.
+   The ring is a conic gradient masked down to a 2px frame. */
+@property --live-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
 .slot.is-live::before {
   content: '';
   position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow:
-    0 0 0 2px color-mix(in srgb, var(--accent) 65%, transparent),
-    0 0 8px 3px rgba(255, 255, 255, 0.85),
-    0 0 16px 6px rgba(255, 255, 255, 0.45);
-  animation: pulse 1.6s ease-in-out infinite;
+  inset: 0;
+  padding: 2px;
+  border-radius: 4px;
+  background: conic-gradient(from var(--live-angle),
+    var(--primary), var(--secondary), var(--accent), var(--primary));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: liveSpin 3s linear infinite;
+  pointer-events: none;
   z-index: 2;
+}
+.slot.is-live::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 14px color-mix(in srgb, var(--primary) 35%, transparent);
+  animation: liveGlow 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes liveSpin { to { --live-angle: 360deg; } }
+@keyframes liveGlow {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slot.is-live::before, .slot.is-live::after { animation: none !important; }
 }
 
 .slot ul {
