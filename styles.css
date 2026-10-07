@@ -311,6 +311,13 @@ button { font-family: inherit; }
   font-size: 21px;
   letter-spacing: -0.02em;
 }
+/* Secret tap targets: stop phones treating a double-tap as zoom,
+   which would swallow the second tap. */
+.login-mark,
+.login-front .login-title {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
 
 .login-sub {
   margin: 0 0 26px;
